@@ -50,7 +50,7 @@
         <div class="content">
           <span class="close modal-trigger"></span>
           <div class="modal-body">
-            <form id=form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+            <form id=form name="reserve" action="index.html" method="post" onsubmit="return validateForm()";>
 
               <div class="formData">
                 <label for="prenom">Prénom</label><br>
@@ -79,7 +79,7 @@
 
               <div class="formData">
                 <label>A quel tournoi souhaitez-vous participer cette année ?</label>
-                  <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" checked/>
+                  <input class="checkbox-input" type="radio" id="location1" name="location" value="New York"/>
                   <label class="checkbox-label" for="location1">
                     <span class="checkbox-icon"></span>
                     New York

@@ -76,9 +76,20 @@ document.getElementById("quantity")
     }
 });
 
-// collect radio button & check format
-document.querySelector('input[name="location"]:checked')
- 
+// collect radio button & check selected
+
+document.querySelector(".button")
+  .addEventListener("change", (e) => {
+  const radios = document.querySelector('input[name="location"]');
+  const radioValue = false;
+
+  for (var i=0; i<radios.length; i++) {
+    if (radios[i].checked == true){
+      radioValue = true;    
+      console.log("ok");
+    }
+  }
+});
 
 
 
