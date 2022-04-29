@@ -1,15 +1,3 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-// DOM Elements
-// const formData = document.querySelectorAll(".formData");
-
 // MODAL //
 
 // function that opens or closes the modal
@@ -26,81 +14,56 @@ document.querySelectorAll(".modal-trigger")
 
 // FORM //
 
-// collect prenom, listen event & check format
-document.getElementById("prenom")
-  .addEventListener("blur", (e) => {
-    if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
-      console.log("ok");
-    } else {
-      console.log("nop");
-    }
+document.querySelectorAll(".formData")
+    .forEach(
+      input => input.addEventListener("blur",)
+    )
+
+const form = document.getElementById("form");
+const firstname = document.getElementById("firstname");
+const lastname = document.getElementById("lastname");
+const email = document.getElementById("email");
+const birthday = document.getElementById("birthday");
+const quantity = document.getElementById("quantity");
+const checkbox1 = document.getElementById("checkbox1");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  validateForm();
 });
 
-// collect nom, listen event & check format
-document.getElementById("nom")
-  .addEventListener("blur", (e) => {
-    if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
-      console.log("ok");
-    } else {
-      console.log("nop");
-    }
-});
+validateForm = () => {
+  //get values from inputs
+  const firstnameValue = firstname.value.trim(); 
+  const lastnameValue = lastname.value.trim(); 
+  const emailValue = email.value.trim(); 
+  const birthdayValue = birthday.value.trim(); 
+  const quantityValue = quantity.value.trim(); 
+  const checkbox1Value = checkbox1.value
 
-// collect email, listen event & check format
-document.getElementById("email")
-  .addEventListener("blur", (e) => {
-    if (/[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
-      console.log("ok");
-    } else {
-      console.log("nop");
-    }
-});
-
-// collect date, listen event & check format
-document.getElementById("birthdate")
-  .addEventListener("change", (e) => {
-    if (/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(e.target.value)) {
-      console.log("ok");
-    } else {
-      console.log("nop");
-    }
-});
-
-// collect quantity, listen event & check format
-document.getElementById("quantity")
-  .addEventListener("blur", (e) => {
-    if (/\d/.test(e.target.value.trim())) {
-      console.log("ok");
-    } else {
-      console.log("nop");
-    }
-});
-
-// collect radio button & check selected
-
-document.querySelector(".button")
-  .addEventListener("change", (e) => {
-  const radios = document.querySelector('input[name="location"]');
-  const radioValue = false;
-
-  for (var i=0; i<radios.length; i++) {
-    if (radios[i].checked == true){
-      radioValue = true;    
-      console.log("ok");
-    }
+  if (firstnameValue === "") {
+    console.log("missing");
+  } else if (!validFirstname(firstnameValue)) {
+    console.log("not valid");
+  } else {
+    console.log("ok");
   }
-});
 
+  if (emailValue === "") {
+    console.log("missing");
+  } else if (!validEmail(emailValue)) {
+    console.log("not valid");
+  } else {
+    console.log("ok");
+  }
 
+}
 
+validFirstname = (firstname) => {
+  /[A-Za-z0-9]{2,}/.test(firstname);
+}
 
-// const form = document.getElementById("form");
-
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   checkInputs
-// });
-
-
-  
+validEmail = (email) => {
+  /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(email);
+}
