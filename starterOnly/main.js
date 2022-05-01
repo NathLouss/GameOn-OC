@@ -14,56 +14,60 @@ document.querySelectorAll(".modal-trigger")
 
 // FORM //
 
-document.querySelectorAll(".formData")
-    .forEach(
-      input => input.addEventListener("blur",)
-    )
+const formData = document.querySelectorAll(".formData");
 
-const form = document.getElementById("form");
-const firstname = document.getElementById("firstname");
-const lastname = document.getElementById("lastname");
-const email = document.getElementById("email");
-const birthday = document.getElementById("birthday");
-const quantity = document.getElementById("quantity");
-const checkbox1 = document.getElementById("checkbox1");
+// Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
+    // TODO class diseable, remove diseable when form valid
+    // formValidate quand tous les formData return true
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+    // récupère tous les formData, itère dessus 
+      // add.eventlistener sur input au blur/click/change
+      // récupère name input, on la stock dans une variable
+      // récupère value input, on la stock dans une variable
 
-  validateForm();
-});
+        // si name input = firstname
+    // Le champ Prénom a un minimum de 2 caractères / n'est pas vide.//
+          // si value input vide, 
+            // return false + CSS data-error + message erreur
+          // si non vide, test regex (mini 2 caractères)
+            // si faux, return false + CSS data-error-visible="true" + message non valid
+            // si vrai, input/formdata return true + CSS valid (à créer)
+        
+        // si name input = lastname
+    // Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.//
+          // si value input vide, 
+            // return false + CSS data-error + message erreur
+          // si non vide, test regex (mini 2 caractères)
+            // si faux, return false + CSS data-error-visible="true" + message non valid
+            // si vrai, input/formdata return true + CSS valid (à créer)
 
-validateForm = () => {
-  //get values from inputs
-  const firstnameValue = firstname.value.trim(); 
-  const lastnameValue = lastname.value.trim(); 
-  const emailValue = email.value.trim(); 
-  const birthdayValue = birthday.value.trim(); 
-  const quantityValue = quantity.value.trim(); 
-  const checkbox1Value = checkbox1.value
+        // si name input = email
+    // L'adresse électronique est valide.//
+          // si value input vide,
+            // return false + CSS data-error + message erreur
+          // si non vide, test regex (mini 2 caractères @ mini 2 caractères . mini 2 caractères)
+            // si faux, return false + CSS data-error-visible="true" + message non valid
+            // si vrai, input/formdata return true + CSS valid (à créer)
 
-  if (firstnameValue === "") {
-    console.log("missing");
-  } else if (!validFirstname(firstnameValue)) {
-    console.log("not valid");
-  } else {
-    console.log("ok");
-  }
+        // si name input = quantity
+    // Pour le nombre de concours, une valeur numérique est saisie.//
+          // si value input vide,
+            // return false + CSS data-error + message erreur
+          // si non vide, test regex (digit)
+            // si faux, return false + CSS data-error-visible="true" + message non valid
+            // si vrai, input/formdata return true + CSS valid (à créer)
 
-  if (emailValue === "") {
-    console.log("missing");
-  } else if (!validEmail(emailValue)) {
-    console.log("not valid");
-  } else {
-    console.log("ok");
-  }
+        // si name input = location
+    // Un bouton radio est sélectionné.//
+          // récupère tous les input avec name location, itère dessus
+          // si 0 attribu checked
+            // return false + CSS data-error + message erreur
+          // si 1 attribu checked
+            // input/formdata return true + CSS valid (à créer)
 
-}
+        // si name input = checkbox
+    // La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.//
+          // 
 
-validFirstname = (firstname) => {
-  /[A-Za-z0-9]{2,}/.test(firstname);
-}
-
-validEmail = (email) => {
-  /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(email);
-}
+// Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
+   // TODO prevent.default pas de reset
