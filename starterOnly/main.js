@@ -16,15 +16,39 @@ document.querySelectorAll(".modal-trigger")
 
 const formData = document.querySelectorAll(".formData");
 
+// récupère tous les inputs et on les stocks dans une variable
+const form = document.getElementById("form");
+const firstname = document.getElementById("firstname");
+const lastname = document.getElementById("lastname");
+const email = document.getElementById("email");
+const birthday = document.getElementById("birthday");
+const quantity = document.getElementById("quantity");
+
+ 
+isValidFirstname = (firstname) => {
+  if (firstname === "") {
+    console.log("missing");
+  } else if (/[A-Za-z0-9]{2,}/.test(firstname.value)) {
+    console.log("ok");
+  } else {
+    console.log("nop");
+  }
+};
+
+firstname.addEventListener("blur", isValidFirstname);
+
+
+
+
 // Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
-    // TODO class diseable, remove diseable when form valid
+    // TODO class disable, remove disable when form valid
     // formValidate quand tous les formData return true
 
     // récupère tous les formData, itère dessus 
       // add.eventlistener sur input au blur/click/change
       // récupère name input, on la stock dans une variable
       // récupère value input, on la stock dans une variable
-
+    
         // si name input = firstname
     // Le champ Prénom a un minimum de 2 caractères / n'est pas vide.//
           // si value input vide, 
@@ -33,6 +57,8 @@ const formData = document.querySelectorAll(".formData");
             // si faux, return false + CSS data-error-visible="true" + message non valid
             // si vrai, input/formdata return true + CSS valid (à créer)
         
+
+
         // si name input = lastname
     // Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.//
           // si value input vide, 
@@ -40,6 +66,7 @@ const formData = document.querySelectorAll(".formData");
           // si non vide, test regex (mini 2 caractères)
             // si faux, return false + CSS data-error-visible="true" + message non valid
             // si vrai, input/formdata return true + CSS valid (à créer)
+
 
         // si name input = email
     // L'adresse électronique est valide.//
