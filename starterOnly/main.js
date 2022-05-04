@@ -16,7 +16,7 @@ document.querySelectorAll(".modal-trigger")
 
 const formData = document.querySelectorAll(".formData");
 
-// récupère tous les inputs et on les stocks dans une variable
+// collect all inputs & stock on variable
 const form = document.getElementById("form");
 const firstname = document.getElementById("firstname");
 const lastname = document.getElementById("lastname");
@@ -24,21 +24,40 @@ const email = document.getElementById("email");
 const birthday = document.getElementById("birthday");
 const quantity = document.getElementById("quantity");
 
- 
-isValidFirstname = (firstname) => {
-  if (firstname === "") {
-    console.log("missing");
-  } else if (/[A-Za-z0-9]{2,}/.test(firstname.value)) {
+// listen event & check format of firstname input
+firstname.addEventListener("blur", (e) => {
+  if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
     console.log("ok");
+    e.currentTarget.classList.add(":valid");       
+    e.currentTarget.parentNode.classList.remove("formData[data-error]::after");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
   } else {
     console.log("nop");
+    e.currentTarget.classList.remove(":valid");
+    e.currentTarget.parentNode.classList.add("formData[data-error]::after");
   }
-};
+});
 
-firstname.addEventListener("blur", isValidFirstname);
+// listen event & check format of lastname input
+lastname.addEventListener("blur", (e) => {
+  if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
+    console.log("ok");
+    e.currentTarget.classList.add(":valid");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+  } else {
+    console.log("nop");
+    e.currentTarget.classList.remove(":valid");
+  }
+});
 
-
-
+// listen event & check format of lastname input
+email.addEventListener("blur", (e) => {
+  if (/[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
+    console.log("ok");
+    e.currentTarget.classList.add(":valid");   
+  } else {
+    console.log("nop");
+    e.currentTarget.classList.remove(":valid");
+  }
+});
 
 // Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
     // TODO class disable, remove disable when form valid
@@ -57,8 +76,6 @@ firstname.addEventListener("blur", isValidFirstname);
             // si faux, return false + CSS data-error-visible="true" + message non valid
             // si vrai, input/formdata return true + CSS valid (à créer)
         
-
-
         // si name input = lastname
     // Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.//
           // si value input vide, 
