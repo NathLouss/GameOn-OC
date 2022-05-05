@@ -24,94 +24,119 @@ const email = document.getElementById("email");
 const birthday = document.getElementById("birthday");
 const quantity = document.getElementById("quantity");
 
-// listen event & check format of firstname input
-firstname.addEventListener("blur", (e) => {
-  if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
+// firstname input
+isFirstnameValid = () => {
+  let validFirstname = false;
+  if (firstname === "") {
+    console.log("missing something");
+  } else if (/[A-Za-z0-9]{2,}/.test(firstname.value.trim())) {
     console.log("ok");
-    e.currentTarget.classList.add(":valid");       
-    e.currentTarget.parentNode.classList.remove("formData[data-error]::after");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    firstname.classList.add(":valid");
+    validFirstname = true;
   } else {
     console.log("nop");
-    e.currentTarget.classList.remove(":valid");
-    e.currentTarget.parentNode.classList.add("formData[data-error]::after");
+    firstname.classList.remove(":valid");
+  }
+}
+
+firstname.addEventListener("blur", isFirstnameValid);
+
+//  lastname input
+isLastnameValid = () => {
+  let validLastname = false;
+  if (lastname === "") {
+    console.log("missing something");
+  } else if (/[A-Za-z0-9]{2,}/.test(lastname.value.trim())) {
+    console.log("ok");
+    lastname.classList.add(":valid");
+    validLastname = true;
+  } else {
+    console.log("nop");
+    lastname.classList.remove(":valid");
+  }
+}
+
+lastname.addEventListener("blur", isLastnameValid);
+
+// email input
+isEmailValid = () => {
+  let validEmail = false;
+  if (email === "") {
+    console.log("missing something");
+  } else if (/[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(email.value.trim())) {
+    console.log("ok");
+    email.classList.add(":valid");
+    validEmail = true;
+  } else {
+    console.log("nop");
+    email.classList.remove(":valid");
+  }
+}
+
+email.addEventListener("blur", isEmailValid);
+
+// birthday input 
+isBirthdayValid = () => {
+  let validBirthday = false;
+  if (birthday === "") {
+    console.log("missing something");
+  } else if (/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(birthday.value)) {
+    console.log("ok");
+    birthday.classList.add(":valid");
+    validBirthday = true;
+  } else {
+    console.log("nop");
+    birthday.classList.remove(":valid");
+  }
+}
+
+birthday.addEventListener("change", isBirthdayValid);
+
+// quantity input 
+isQuantityValid = () => {
+  let validQuantity = false;
+  if (quantity === "") {
+    console.log("missing something");
+  } else if (/\d/.test(quantity.value.trim())) {
+    console.log("ok");
+    quantity.classList.add(":valid");
+    validQuantity = true;
+  } else {
+    console.log("nop");
+    quantity.classList.remove(":valid");
+  }
+}
+
+quantity.addEventListener("blur", isQuantityValid);
+
+// radio button
+document.querySelector(".button")
+  .addEventListener("change", (e) => {
+  const radios = document.querySelector('input[name="location"]');
+  const radioValue = false;
+
+  for (var i=0; i<radios.length; i++) {
+    if (radios[i].checked == true){
+      radioValue = true;    
+      console.log("ok");
+    }
   }
 });
 
-// listen event & check format of lastname input
-lastname.addEventListener("blur", (e) => {
-  if (/[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
-    console.log("ok");
-    e.currentTarget.classList.add(":valid");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-  } else {
-    console.log("nop");
-    e.currentTarget.classList.remove(":valid");
-  }
+
+// form validation
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  validateForm();
 });
 
-// listen event & check format of lastname input
-email.addEventListener("blur", (e) => {
-  if (/[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/.test(e.target.value.trim())) {
-    console.log("ok");
-    e.currentTarget.classList.add(":valid");   
+validateForm = () => {
+  const submit = document.getElementsByClassName("btn-submit");
+  if (validFirstname === true) {
+    submit.classList.removeAttribute("disabled");
+    submit.classList.add(":valid");
+    return true;
   } else {
-    console.log("nop");
-    e.currentTarget.classList.remove(":valid");
+    console.log("try again !");
   }
-});
-
-// Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
-    // TODO class disable, remove disable when form valid
-    // formValidate quand tous les formData return true
-
-    // récupère tous les formData, itère dessus 
-      // add.eventlistener sur input au blur/click/change
-      // récupère name input, on la stock dans une variable
-      // récupère value input, on la stock dans une variable
-    
-        // si name input = firstname
-    // Le champ Prénom a un minimum de 2 caractères / n'est pas vide.//
-          // si value input vide, 
-            // return false + CSS data-error + message erreur
-          // si non vide, test regex (mini 2 caractères)
-            // si faux, return false + CSS data-error-visible="true" + message non valid
-            // si vrai, input/formdata return true + CSS valid (à créer)
-        
-        // si name input = lastname
-    // Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.//
-          // si value input vide, 
-            // return false + CSS data-error + message erreur
-          // si non vide, test regex (mini 2 caractères)
-            // si faux, return false + CSS data-error-visible="true" + message non valid
-            // si vrai, input/formdata return true + CSS valid (à créer)
-
-
-        // si name input = email
-    // L'adresse électronique est valide.//
-          // si value input vide,
-            // return false + CSS data-error + message erreur
-          // si non vide, test regex (mini 2 caractères @ mini 2 caractères . mini 2 caractères)
-            // si faux, return false + CSS data-error-visible="true" + message non valid
-            // si vrai, input/formdata return true + CSS valid (à créer)
-
-        // si name input = quantity
-    // Pour le nombre de concours, une valeur numérique est saisie.//
-          // si value input vide,
-            // return false + CSS data-error + message erreur
-          // si non vide, test regex (digit)
-            // si faux, return false + CSS data-error-visible="true" + message non valid
-            // si vrai, input/formdata return true + CSS valid (à créer)
-
-        // si name input = location
-    // Un bouton radio est sélectionné.//
-          // récupère tous les input avec name location, itère dessus
-          // si 0 attribu checked
-            // return false + CSS data-error + message erreur
-          // si 1 attribu checked
-            // input/formdata return true + CSS valid (à créer)
-
-        // si name input = checkbox
-    // La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.//
-          // 
-
-// Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
-   // TODO prevent.default pas de reset
+}
