@@ -19,12 +19,11 @@ toggleModal = () => {
 }
 
 // first name input validation function
-isFirstnameValid = () => {
+ isFirstnameValid = () => {
   firstname.classList.remove(":valid");
   const regex = /[A-Za-z0-9]{2,}/;
   if (regex.test(firstname.value.trim())) {
     firstname.classList.add(":valid");
-console.log("ok mamie");
 
     return true;
   }
@@ -38,7 +37,6 @@ isLastnameValid = () => {
   const regex = /[A-Za-z0-9]{2,}/;
   if (regex.test(lastname.value.trim())) {
     lastname.classList.add(":valid");
-console.log("ok paulo");
 
     return true;
   }
@@ -52,12 +50,11 @@ isEmailValid = () => {
   const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
   if (regex.test(email.value.trim())) {
     email.classList.add(":valid");
-console.log("ok mail mail");
 
     return true;
   }
 
-  return false;
+  return false
 }
 
 // birthday input validation fucntion
@@ -66,12 +63,12 @@ isBirthdateValid = () => {
   const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
   if (regex.test(birthdate.value)) {
     birthdate.classList.add(":valid");
-console.log("ok");
+console.log("ok birth");
 
     return true;
   }
 
-  return false;
+  return false
 }
 
 // quantity input validation function
@@ -80,7 +77,7 @@ isQuantityValid = () => {
   const regex = /\d/;
   if (regex.test(quantity.value.trim())) {
     quantity.classList.add(":valid");
-console.log("ok");
+console.log("ok quantity");
 
     return true;
   }
@@ -103,7 +100,7 @@ console.log("ok radio");
 
 // checkbox validation function
 isCheckboxChecked = () => {
-  if (checkbox.checked){
+  if (checkbox.checked) {
 console.log("ok checkbox");
 
       return true;
@@ -116,7 +113,7 @@ console.log("ok checkbox");
 disabledSubmit = () => {
   submit.setAttribute("disabled", true);
 console.log("button désactivé");
-  if (isFirstnameValid && isLastnameValid && isEmailValid) {
+  if (isFirstnameValid() && isLastnameValid() && isEmailValid()) {
     submit.removeAttribute("disabled");
 console.log("button activé");
   }
@@ -126,13 +123,13 @@ console.log("button activé");
 validateForm = () => {
   e.preventDefault();
 
-  let validFirstname = isFirstnameValid;
-  let validLastname = isLastnameValid;
-  let validEmail = isEmailValid;
-  let validBirthdate = isBirthdateValid;
-  let validQuantity = isQuantityValid;
-  let validRadio = atLeastOneRadioButtonIsChecked;
-  let validCheckbox = isCheckboxChecked;
+  let validFirstname = isFirstnameValid();
+  let validLastname = isLastnameValid();
+  let validEmail = isEmailValid();
+  let validBirthdate = isBirthdateValid();
+  let validQuantity = isQuantityValid();
+  let validRadio = atLeastOneRadioButtonIsChecked();
+  let validCheckbox = isCheckboxChecked();
 
   if (validFirstname === true && validLastname === true && validEmail === true && validBirthdate === true 
     && validQuantity === true && validRadio === true && validCheckbox=== true ) {
