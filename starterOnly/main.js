@@ -8,7 +8,7 @@ const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const radios = document.querySelector('input[type="radio"]');
+const radios = document.querySelectorAll('input[type="radio"]');
 const checkbox = document.getElementById("checkbox1");
 const submit = document.querySelector('input[type="submit"]');
 
@@ -63,7 +63,6 @@ isBirthdateValid = () => {
   const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
   if (regex.test(birthdate.value)) {
     birthdate.classList.add(":valid");
-console.log("ok birth");
 
     return true;
   }
@@ -77,7 +76,6 @@ isQuantityValid = () => {
   const regex = /\d/;
   if (regex.test(quantity.value.trim())) {
     quantity.classList.add(":valid");
-console.log("ok quantity");
 
     return true;
   }
@@ -87,9 +85,8 @@ console.log("ok quantity");
 
 // radio button validation function
 atLeastOneRadioButtonIsChecked = () => {
-  for (var i=0; i<radios.length; i++) {
-    if (radios[i].checked){
-console.log("ok radio");
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
 
       return true;
     }  
@@ -101,10 +98,9 @@ console.log("ok radio");
 // checkbox validation function
 isCheckboxChecked = () => {
   if (checkbox.checked) {
-console.log("ok checkbox");
 
-      return true;
-    }  
+    return true;
+  }  
 
   return false
 }
@@ -112,16 +108,19 @@ console.log("ok checkbox");
 // disabled submit button function
 disabledSubmit = () => {
   submit.setAttribute("disabled", true);
-console.log("button désactivé");
-  if (isFirstnameValid() && isLastnameValid() && isEmailValid()) {
+  if (isFirstnameValid() && isLastnameValid() && isEmailValid() && isBirthdateValid() && isQuantityValid()) {
     submit.removeAttribute("disabled");
-console.log("button activé");
   }
 }
 
 // form validation function
-validateForm = () => {
+validateForm = (e) => {
   e.preventDefault();
+
+  checkInputs()
+}
+
+checkInputs = () => {
 
   let validFirstname = isFirstnameValid();
   let validLastname = isLastnameValid();
@@ -131,13 +130,11 @@ validateForm = () => {
   let validRadio = atLeastOneRadioButtonIsChecked();
   let validCheckbox = isCheckboxChecked();
 
-  if (validFirstname === true && validLastname === true && validEmail === true && validBirthdate === true 
-    && validQuantity === true && validRadio === true && validCheckbox=== true ) {
-
+  if (validFirstname === true && validLastname === true && validEmail === true && validBirthdate === true && validQuantity === true && validRadio === true && validCheckbox=== true ) {
     return true;
   }
 
-  return false;
+  return false
 }
 
 // EVENT LISTENERS
@@ -149,5 +146,5 @@ email.addEventListener("blur", isEmailValid);
 birthdate.addEventListener("change", isBirthdateValid);
 quantity.addEventListener("blur", isQuantityValid);
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
-form.addEventListener("submit", atLeastOneRadioButtonIsChecked, isCheckboxChecked, validateForm);
+form.addEventListener("submit", validateForm);
 
