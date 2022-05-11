@@ -19,7 +19,7 @@ toggleModal = () => {
 }
 
 // first name input validation function
- isFirstnameValid = () => {
+isFirstnameValid = () => {
   firstname.classList.remove(":valid");
   const regex = /[A-Za-z0-9]{2,}/;
   if (regex.test(firstname.value.trim())) {
@@ -61,9 +61,10 @@ isEmailValid = () => {
 isBirthdateValid = () => {
   birthdate.classList.remove(":valid");
   const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+  // const regex = /(0?[1-9]|[12][0-9]|3[01])[-\\/ ]?(0?[1-9]|1[0-2])[-/ ]?(?:19|20)[0-9]{2}/;
   if (regex.test(birthdate.value)) {
     birthdate.classList.add(":valid");
-
+  console.log('age ok');
     return true;
   }
 
@@ -108,8 +109,16 @@ isCheckboxChecked = () => {
 // disabled submit button function
 disabledSubmit = () => {
   submit.setAttribute("disabled", true);
-  if (isFirstnameValid() && isLastnameValid() && isEmailValid() && isBirthdateValid() && isQuantityValid()) {
-    submit.removeAttribute("disabled");
+
+  let validFirstname = isFirstnameValid();
+  let validLastname = isLastnameValid();
+  let validEmail = isEmailValid();
+  let validBirthdate = isBirthdateValid();
+  let validQuantity = isQuantityValid();
+  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity;
+ 
+  if (isInputsValid) {
+    submit.removeAttribute("disabled")
   }
 }
 
@@ -121,7 +130,6 @@ validateForm = (e) => {
 }
 
 checkInputs = () => {
-
   let validFirstname = isFirstnameValid();
   let validLastname = isLastnameValid();
   let validEmail = isEmailValid();
@@ -129,9 +137,11 @@ checkInputs = () => {
   let validQuantity = isQuantityValid();
   let validRadio = atLeastOneRadioButtonIsChecked();
   let validCheckbox = isCheckboxChecked();
-
-  if (validFirstname === true && validLastname === true && validEmail === true && validBirthdate === true && validQuantity === true && validRadio === true && validCheckbox=== true ) {
-    return true;
+  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
+  
+  if (isInputsValid) {
+    form.submit();
+    return true
   }
 
   return false
