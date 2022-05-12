@@ -24,7 +24,7 @@ isFirstnameValid = () => {
 
   if (regex.test(firstname.value.trim())) {
     hideError(firstname.parentNode);
-    
+
     return true;
 
   } else {
@@ -36,15 +36,18 @@ isFirstnameValid = () => {
 
 //  last name input validation function
 isLastnameValid = () => {
-  lastname.classList.remove(":valid");
   const regex = /[A-Za-z0-9]{2,}/;
+
   if (regex.test(lastname.value.trim())) {
-    lastname.classList.add(":valid");
-
+    hideError(lastname.parentNode);
+    
     return true;
-  }
 
-  return false
+  } else {
+    showError(lastname.parentNode);
+
+    return false
+  }
 }
 
 // email input validation function
