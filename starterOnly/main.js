@@ -61,7 +61,6 @@ isEmailValid = () => {
 isBirthdateValid = () => {
   birthdate.classList.remove(":valid");
   const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
-  // const regex = /(0?[1-9]|[12][0-9]|3[01])[-\\/ ]?(0?[1-9]|1[0-2])[-/ ]?(?:19|20)[0-9]{2}/;
   if (regex.test(birthdate.value)) {
     birthdate.classList.add(":valid");
   console.log('age ok');
@@ -141,6 +140,7 @@ checkInputs = () => {
   
   if (isInputsValid) {
     form.submit();
+    
     return true
   }
 
