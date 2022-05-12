@@ -52,15 +52,18 @@ isLastnameValid = () => {
 
 // email input validation function
 isEmailValid = () => {
-  email.classList.remove(":valid");
   const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
+
   if (regex.test(email.value.trim())) {
-    email.classList.add(":valid");
-
+    hideError(email.parentNode);
+    
     return true;
-  }
 
-  return false
+  } else {
+    showError(email.parentNode);
+
+    return false
+  }
 }
 
 // birthday input validation fucntion
