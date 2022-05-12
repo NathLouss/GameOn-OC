@@ -20,15 +20,18 @@ toggleModal = () => {
 
 // first name input validation function
 isFirstnameValid = () => {
-  firstname.classList.remove(":valid");
   const regex = /[A-Za-z0-9]{2,}/;
+
   if (regex.test(firstname.value.trim())) {
-    firstname.classList.add(":valid");
-
+    hideError(firstname.parentNode);
+    
     return true;
-  }
 
-  return false
+  } else {
+    showError(firstname.parentNode);
+
+    return false
+  }
 }
 
 //  last name input validation function
@@ -103,6 +106,14 @@ isCheckboxChecked = () => {
   }  
 
   return false
+}
+
+showError = (element) => {
+  element.setAttribute("data-error-visible", true)
+}
+
+hideError = (element) => {
+  element.removeAttribute("data-error-visible")
 }
 
 // disabled submit button function
