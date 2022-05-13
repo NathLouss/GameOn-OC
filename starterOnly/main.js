@@ -8,7 +8,7 @@ const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const radios = document.querySelectorAll("input[type=radio]");
+const radios = document.querySelectorAll("input[name=location]");
 const radioFormData = document.getElementById("radioFormData");
 const checkbox = document.getElementById("checkbox1");
 const submit = document.querySelector("input[type=submit]");
@@ -21,125 +21,111 @@ toggleModal = () => {
 
 // function check if Firstname is valid & display or not error
 isFirstnameValid = () => {
-  const regex = /[A-Za-z0-9]{2,}/;
+  let firstnameValue = firstname.value.trim();
+  if (firstnameValue != "") {
+    const regex = /[A-Za-z0-9]{2,}/;
 
-  if (regex.test(firstname.value.trim())) {
-    hideError(firstname.parentNode);
+    if (regex.test(firstnameValue)) {
 
-    return true;
-
-  } else {
-    showError(firstname.parentNode);
-
-    return false
+      return hideError(firstname.parentNode);
+      } 
+  
+    return showError(firstname.parentNode)
   }
 }
 
 // function check if Lastname is valid & display or not error
 isLastnameValid = () => {
-  const regex = /[A-Za-z0-9]{2,}/;
+  let lastnameValue = lastname.value.trim();
+  if (lastnameValue != "") {
+    const regex = /[A-Za-z0-9]{2,}/;
 
-  if (regex.test(lastname.value.trim())) {
-    hideError(lastname.parentNode);
-    
-    return true;
+    if (regex.test(lastnameValue)) {
 
-  } else {
-    showError(lastname.parentNode);
+      return hideError(lastname.parentNode);
+    } 
 
-    return false
+    return showError(lastname.parentNode)
   }
 }
 
 // function check if email is valid & display or not error
 isEmailValid = () => {
-  const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
+  let emailValue = email.value.trim();
+  if (emailValue != "") {
+    const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
 
-  if (regex.test(email.value.trim())) {
-    hideError(email.parentNode);
-    
-    return true;
+    if (regex.test(emailValue)) {
 
-  } else {
-    showError(email.parentNode);
+      return hideError(email.parentNode);
+    } 
 
-    return false
+    return showError(email.parentNode)
   }
 }
 
 // function check if birthdate is valid & display or not error
 isBirthdateValid = () => {
-  const regex = /^(19|20)\d{2}[-](0?[1-9]|1[012])[-](0[1-9]|[12]\d|3[01])$/;
+  let birthdateValue = birthdate.value;
+  if (birthdateValue != "") {
+    const regex = /^(19|20)\d{2}[-](0?[1-9]|1[012])[-](0[1-9]|[12]\d|3[01])$/;
 
-  if (regex.test(birthdate.value)) {
-    hideError(birthdate.parentNode);
+    if (regex.test(birthdateValue)) {
 
-    return true;
+      return hideError(birthdate.parentNode);
+    } 
 
-  } else {
-    showError(birthdate.parentNode);
-
-    return false
+    return showError(birthdate.parentNode)
   }
 }
 
 // function check if quantity is valid & display or not error
 isQuantityValid = () => {
-  const regex = /^([0-9]|[1-9][0-9])$/;
+  let quantityValue = quantity.value;
+  if (quantityValue != "") {
+    const regex = /^([0-9]|[1-9][0-9])$/;
 
-  if (regex.test(quantity.value.trim())) {
-    hideError(quantity.parentNode);
+    if (regex.test(quantityValue)) {
 
-    return true;
+      return hideError(quantity.parentNode);
+    } 
 
-  } else {
-    showError(quantity.parentNode);
-
-    return false
+    return showError(quantity.parentNode)
   }
 }
 
 // function check if radio button is checked & display or not error
 isRadioChecked = () => {
-    // if (radios.length > 0) {
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) {
-console.log('ok');
-      hideError(radioFormData);
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
 
-      return true;
-
-    } else {
-console.log('nop');
-      showError(radioFormData);
-
-      return false
-    }
+      return hideError(radioFormData);
+    } 
   }
+
+  return showError(radioFormData)
 }
 
 // function check if checkbox is checked & display or not error
 isCheckboxChecked = () => {
   if (checkbox.checked) {
-    hideError(checkbox.parentNode);
-    
-    return true;
 
-  } else {
-    showError(checkbox.parentNode);
+    return hideError(checkbox.parentNode);
+  } 
 
-    return false
-  }
+  return showError(checkbox.parentNode)
 }
 
 // function to display error message
 showError = (element) => {
-  element.setAttribute("data-error-visible", true)
+  element.setAttribute("data-error-visible", true);
+  return false
 }
 
 // function to hide error message
 hideError = (element) => {
-  element.removeAttribute("data-error-visible")
+  element.removeAttribute("data-error-visible");
+  return true
 }
 
 // function to check if all inputs are valid
