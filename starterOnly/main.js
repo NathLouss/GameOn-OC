@@ -100,7 +100,7 @@ isQuantityValid = () => {
 }
 
 // radio button validation function
-isRadioCheck = () => {
+isRadioChecked = () => {
     // if (radios.length > 0) {
     for (var i = 0; i < radios.length; i++) {
       if (radios[i].checked) {
@@ -121,12 +121,17 @@ console.log('nop');
 // checkbox validation function
 isCheckboxChecked = () => {
   if (checkbox.checked) {
-
+    hideError(checkbox.parentNode);
+    
     return true;
-  }  
 
-  return false
+  } else {
+    showError(checkbox.parentNode);
+
+    return false
+  }
 }
+
 
 showError = (element) => {
   element.setAttribute("data-error-visible", true)
@@ -165,7 +170,7 @@ checkInputs = () => {
   let validEmail = isEmailValid();
   let validBirthdate = isBirthdateValid();
   let validQuantity = isQuantityValid();
-  let validRadio = isRadioCheck();
+  let validRadio = isRadioChecked();
   let validCheckbox = isCheckboxChecked();
   let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
   
@@ -186,7 +191,7 @@ lastname.addEventListener("blur", isLastnameValid);
 email.addEventListener("blur", isEmailValid);
 birthdate.addEventListener("change", isBirthdateValid);
 quantity.addEventListener("blur", isQuantityValid);
-radios.forEach(radio => radio.addEventListener("click", isRadioCheck));
+radios.forEach(radio => radio.addEventListener("click", isRadioChecked));
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
 form.addEventListener("submit", validateForm);
 
