@@ -68,15 +68,18 @@ isEmailValid = () => {
 
 // birthday input validation fucntion
 isBirthdateValid = () => {
-  birthdate.classList.remove(":valid");
-  const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
-  if (regex.test(birthdate.value)) {
-    birthdate.classList.add(":valid");
-  console.log('age ok');
-    return true;
-  }
+  const regex = /^(19|20)\d{2}[-](0?[1-9]|1[012])[-](0[1-9]|[12]\d|3[01])$/;
 
-  return false
+  if (regex.test(birthdate.value)) {
+    hideError(birthdate.parentNode);
+
+    return true;
+
+  } else {
+    showError(birthdate.parentNode);
+
+    return false
+  }
 }
 
 // quantity input validation function
