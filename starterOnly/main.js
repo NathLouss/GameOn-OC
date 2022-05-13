@@ -142,22 +142,6 @@ hideError = (element) => {
   element.removeAttribute("data-error-visible")
 }
 
-// function check if inputs are valid & display or not submit button
-disabledSubmit = () => {
-  submit.setAttribute("disabled", true);
-
-  let validFirstname = isFirstnameValid();
-  let validLastname = isLastnameValid();
-  let validEmail = isEmailValid();
-  let validBirthdate = isBirthdateValid();
-  let validQuantity = isQuantityValid();
-  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity;
- 
-  if (isInputsValid) {
-    submit.removeAttribute("disabled")
-  }
-}
-
 // function to check if all inputs are valid
 checkInputs = () => {
   let validFirstname = isFirstnameValid();
@@ -175,6 +159,11 @@ checkInputs = () => {
   }
 
   return false
+}
+
+// function check if inputs are valid & display or not submit button
+disabledSubmit = () => {
+  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true);
 }
 
 // function check if all inputs are valid & submit the form
