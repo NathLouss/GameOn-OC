@@ -8,9 +8,10 @@ const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const radios = document.querySelectorAll('input[type="radio"]');
+const radios = document.querySelectorAll("input[type=radio]");
+const radioFormData = document.getElementById("radioFormData");
 const checkbox = document.getElementById("checkbox1");
-const submit = document.querySelector('input[type="submit"]');
+const submit = document.querySelector("input[type=submit]");
 
 // function open or close the modal
 toggleModal = () => {
@@ -99,15 +100,22 @@ isQuantityValid = () => {
 }
 
 // radio button validation function
-atLeastOneRadioButtonIsChecked = () => {
-  for (var i = 0; i < radios.length; i++) {
-    if (radios[i].checked) {
+isRadioCheck = () => {
+    // if (radios.length > 0) {
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+console.log('ok');
+      hideError(radioFormData);
 
       return true;
-    }  
-  }
 
-  return false
+    } else {
+console.log('nop');
+      showError(radioFormData);
+
+      return false
+    }
+  }
 }
 
 // checkbox validation function
@@ -157,7 +165,7 @@ checkInputs = () => {
   let validEmail = isEmailValid();
   let validBirthdate = isBirthdateValid();
   let validQuantity = isQuantityValid();
-  let validRadio = atLeastOneRadioButtonIsChecked();
+  let validRadio = isRadioCheck();
   let validCheckbox = isCheckboxChecked();
   let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
   
@@ -178,6 +186,7 @@ lastname.addEventListener("blur", isLastnameValid);
 email.addEventListener("blur", isEmailValid);
 birthdate.addEventListener("change", isBirthdateValid);
 quantity.addEventListener("blur", isQuantityValid);
+radios.forEach(radio => radio.addEventListener("click", isRadioCheck));
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
 form.addEventListener("submit", validateForm);
 
