@@ -84,15 +84,18 @@ isBirthdateValid = () => {
 
 // quantity input validation function
 isQuantityValid = () => {
-  quantity.classList.remove(":valid");
-  const regex = /\d/;
+  const regex = /^([0-9]|[1-9][0-9])$/;
+
   if (regex.test(quantity.value.trim())) {
-    quantity.classList.add(":valid");
+    hideError(quantity.parentNode);
 
     return true;
-  }
 
-  return false
+  } else {
+    showError(quantity.parentNode);
+
+    return false
+  }
 }
 
 // radio button validation function
