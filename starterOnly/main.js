@@ -8,9 +8,10 @@ const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const radios = document.querySelectorAll('input[type="radio"]');
+const radios = document.querySelectorAll("input[name=location]");
+const radioFormData = document.getElementById("radioFormData");
 const checkbox = document.getElementById("checkbox1");
-const submit = document.querySelector('input[type="submit"]');
+const submit = document.querySelector("input[type=submit]");
 
 // function open or close the modal
 toggleModal = () => {
@@ -18,133 +19,146 @@ toggleModal = () => {
   modalContainer.classList.toggle("active");
 }
 
-// first name input validation function
+// function check if Firstname is valid & display or not error
 isFirstnameValid = () => {
-  firstname.classList.remove(":valid");
-  const regex = /[A-Za-z0-9]{2,}/;
-  if (regex.test(firstname.value.trim())) {
-    firstname.classList.add(":valid");
+  let firstnameValue = firstname.value.trim();
+  if (firstnameValue != "") {
+    const regex = /[A-Za-z0-9]{2,}/;
 
-    return true;
+    if (regex.test(firstnameValue)) {
+
+      return hideError(firstname.parentNode);
+      } 
+  
+    return showError(firstname.parentNode)
   }
-
-  return false
 }
 
-//  last name input validation function
+// function check if Lastname is valid & display or not error
 isLastnameValid = () => {
-  lastname.classList.remove(":valid");
-  const regex = /[A-Za-z0-9]{2,}/;
-  if (regex.test(lastname.value.trim())) {
-    lastname.classList.add(":valid");
+  let lastnameValue = lastname.value.trim();
+  if (lastnameValue != "") {
+    const regex = /[A-Za-z0-9]{2,}/;
 
-    return true;
+    if (regex.test(lastnameValue)) {
+
+      return hideError(lastname.parentNode);
+    } 
+
+    return showError(lastname.parentNode)
   }
-
-  return false
 }
 
-// email input validation function
+// function check if email is valid & display or not error
 isEmailValid = () => {
-  email.classList.remove(":valid");
-  const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
-  if (regex.test(email.value.trim())) {
-    email.classList.add(":valid");
+  let emailValue = email.value.trim();
+  if (emailValue != "") {
+    const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
 
-    return true;
+    if (regex.test(emailValue)) {
+
+      return hideError(email.parentNode);
+    } 
+
+    return showError(email.parentNode)
   }
-
-  return false
 }
 
-// birthday input validation fucntion
+// function check if birthdate is valid & display or not error
 isBirthdateValid = () => {
-  birthdate.classList.remove(":valid");
-  const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
-  if (regex.test(birthdate.value)) {
-    birthdate.classList.add(":valid");
-  console.log('age ok');
-    return true;
-  }
+  let birthdateValue = birthdate.value;
+  if (birthdateValue != "") {
+    const regex = /^(19|20)\d{2}[-](0?[1-9]|1[012])[-](0[1-9]|[12]\d|3[01])$/;
 
-  return false
+    if (regex.test(birthdateValue)) {
+
+      return hideError(birthdate.parentNode);
+    } 
+
+    return showError(birthdate.parentNode)
+  }
 }
 
-// quantity input validation function
+// function check if quantity is valid & display or not error
 isQuantityValid = () => {
-  quantity.classList.remove(":valid");
-  const regex = /\d/;
-  if (regex.test(quantity.value.trim())) {
-    quantity.classList.add(":valid");
+  let quantityValue = quantity.value;
+  if (quantityValue != "") {
+    const regex = /^([0-9]|[1-9][0-9])$/;
 
-    return true;
+    if (regex.test(quantityValue)) {
+
+      return hideError(quantity.parentNode);
+    } 
+
+    return showError(quantity.parentNode)
   }
-
-  return false
 }
 
-// radio button validation function
-atLeastOneRadioButtonIsChecked = () => {
+// function check if radio button is checked & display or not error
+isRadioChecked = () => {
   for (var i = 0; i < radios.length; i++) {
     if (radios[i].checked) {
 
-      return true;
-    }  
+      return hideError(radioFormData);
+    } 
   }
 
-  return false
+  return showError(radioFormData)
 }
 
-// checkbox validation function
+// function check if checkbox is checked & display or not error
 isCheckboxChecked = () => {
   if (checkbox.checked) {
 
-    return true;
-  }  
+    return hideError(checkbox.parentNode);
+  } 
 
+  return showError(checkbox.parentNode)
+}
+
+// function to display error message
+showError = (element) => {
+  element.setAttribute("data-error-visible", true);
   return false
 }
 
-// disabled submit button function
-disabledSubmit = () => {
-  submit.setAttribute("disabled", true);
-
-  let validFirstname = isFirstnameValid();
-  let validLastname = isLastnameValid();
-  let validEmail = isEmailValid();
-  let validBirthdate = isBirthdateValid();
-  let validQuantity = isQuantityValid();
-  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity;
- 
-  if (isInputsValid) {
-    submit.removeAttribute("disabled")
-  }
+// function to hide error message
+hideError = (element) => {
+  element.removeAttribute("data-error-visible");
+  return true
 }
 
-// form validation function
-validateForm = (e) => {
-  e.preventDefault();
-
-  checkInputs()
-}
-
+// function to check if all inputs are valid
 checkInputs = () => {
   let validFirstname = isFirstnameValid();
   let validLastname = isLastnameValid();
   let validEmail = isEmailValid();
   let validBirthdate = isBirthdateValid();
   let validQuantity = isQuantityValid();
-  let validRadio = atLeastOneRadioButtonIsChecked();
+  let validRadio = isRadioChecked();
   let validCheckbox = isCheckboxChecked();
   let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
   
   if (isInputsValid) {
-    form.submit();
-    
+
     return true
   }
 
   return false
+}
+
+// function check if inputs are valid & display or not submit button
+disabledSubmit = () => {
+  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true);
+}
+
+// function check if all inputs are valid & submit the form
+validateForm = (e) => {
+  e.preventDefault();
+
+  if (checkInputs()) {
+    form.submit()
+  }
 }
 
 // EVENT LISTENERS
@@ -155,6 +169,6 @@ lastname.addEventListener("blur", isLastnameValid);
 email.addEventListener("blur", isEmailValid);
 birthdate.addEventListener("change", isBirthdateValid);
 quantity.addEventListener("blur", isQuantityValid);
+radios.forEach(radio => radio.addEventListener("click", isRadioChecked));
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
 form.addEventListener("submit", validateForm);
-
