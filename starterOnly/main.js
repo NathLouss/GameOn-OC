@@ -1,5 +1,6 @@
 // VARIABLES
 const modalTriggers = document.querySelectorAll(".modal-trigger");
+const modalContainer = document.querySelector(".bground");
 
 const formData = document.querySelectorAll(".formData");
 const form = document.getElementById("form");
@@ -12,10 +13,10 @@ const radios = document.querySelectorAll("input[name=location]");
 const radioFormData = document.getElementById("radioFormData");
 const checkbox = document.getElementById("checkbox1");
 const submit = document.querySelector("input[type=submit]");
+const modalBody = document.querySelector(".content");
 
 // function open or close the modal
 toggleModal = () => {
-  const modalContainer = document.querySelector(".bground");
   modalContainer.classList.toggle("active");
 }
 
@@ -157,7 +158,7 @@ validateForm = (e) => {
   e.preventDefault();
 
   if (checkInputs()) {
-    form.submit()
+    modalBody.innerHTML = "Merci pour votre insciption" + '<button id="close-btn">Fermer</button>'; 
   }
 }
 
