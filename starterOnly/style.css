@@ -189,10 +189,10 @@ main {
   padding-top: 10px;
 }
 
-.content::after {
+.content-validation {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: 0 85px;
   margin: 5% auto;
   height: 600px;
@@ -203,6 +203,17 @@ main {
   /* overflow: hidden;
   position: relative; */
   color: #fff;
+  font-size: 40px;
+  padding: 250px 98px 0;
+  text-align: center;
+}
+
+#close-inscription {
+  margin-top: 170px;
+}
+
+.close-modal {
+  display: none;
 }
 
 .modal-body {
