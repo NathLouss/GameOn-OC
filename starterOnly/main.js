@@ -14,7 +14,6 @@ const radioFormData = document.getElementById("radioFormData");
 const checkbox = document.getElementById("checkbox1");
 const submit = document.querySelector("input[type=submit]");
 const modalBody = document.querySelector(".content");
-const closeBtn = document.getElementById("close-inscription");
 
 // function open or close the modal
 toggleModal = () => {
@@ -164,9 +163,11 @@ validateForm = (e) => {
   }
 }
 
-// function close modal validation inscription
-closeModal = () => {
-  closeBtn.classList.add("close-modal")
+// function close modal after validation inscription
+closeModal = (e) => {
+  if (e.target.id == "close-inscription") {
+    modalContainer.classList.remove("active")
+  }
 }
 
 // EVENT LISTENERS
@@ -180,4 +181,4 @@ quantity.addEventListener("blur", isQuantityValid);
 radios.forEach(radio => radio.addEventListener("click", isRadioChecked));
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
 form.addEventListener("submit", validateForm);
-closeBtn.addEventListener("click", closeModal);
+document.addEventListener("click", closeModal);
