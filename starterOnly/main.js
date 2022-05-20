@@ -158,14 +158,14 @@ validateForm = (e) => {
   e.preventDefault();
 
   if (checkInputs()) {
-    modalBody.innerHTML = "Merci pour votre inscription" + '<button id="close-inscription" class="btn-signup">Fermer</button>'; 
+    modalBody.innerHTML = "Merci pour votre inscription" + '<button id="close-registration" class="btn-signup">Fermer</button>'; 
     modalBody.classList.add("content-validation");
   }
 }
 
-// function close modal after validation inscription
+// function closing the modal after registration validation
 closeModal = (e) => {
-  if (e.target.id == "close-inscription") {
+  if (e.target.id == "close-registration") {
     modalContainer.classList.remove("active")
   }
 }

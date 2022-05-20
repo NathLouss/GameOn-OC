@@ -14,8 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  /* comment element until understanding trouble */
-  /* background-image: url("background.png"); */
+  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -205,7 +204,7 @@ main {
   text-align: center;
 }
 
-#close-inscription {
+#close-registration {
   position: absolute;
   bottom: 17px;
 }
