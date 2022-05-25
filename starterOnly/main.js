@@ -159,19 +159,14 @@ validateForm = (e) => {
 
   if (checkInputs()) {
     modalContainer.classList.remove("active");
-    form.reset();
-    modalValidation.classList.add("active");
-
-    // modalBody.innerHTML = "Merci pour votre inscription" + '<button id="close-registration" class="btn-signup">Fermer</button>'; 
-    // modalBody.classList.add("content-validation");
-
+    modalValidation.classList.add("active")
   }
 }
 
 //  closing the modal after registration validation
 closeForm = (e) => {
   modalValidation.classList.remove("active");
-  form.reset();
+  form.reset()
 }
 
 // EVENT LISTENERS
