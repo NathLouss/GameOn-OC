@@ -156,7 +156,6 @@ main {
 }
 
 /* Modal form */
-
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -192,6 +191,7 @@ main {
   display: block;
 }
 
+/* validation modal background */
 .bground-validation {
   display: none;
   justify-content: center;
@@ -205,6 +205,7 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+/* validation modal background */
 .bground-validation.active {
   display: flex;
 }
@@ -223,6 +224,7 @@ main {
   padding-top: 10px;
 }
 
+/* validation modal content  */
 .content-validation {
   position: relative;
   display: flex;
@@ -236,6 +238,7 @@ main {
   border-radius: 10px;
 }
 
+/* validation text  */
 .thanks {
   font-size: 40px;
   font-weight: 500;
@@ -243,11 +246,13 @@ main {
   text-align: center;
 }
 
+/* close button of the validation modal */
 #close-registration {
   position: absolute;
   bottom: 17px;
 }
 
+/* adjustment for responsive */
 @media screen and (max-width: 426px) {
   .content-validation {
     height: 100%;
@@ -415,7 +420,6 @@ input[data-error]::after {
 }
 /* animation rotating on hover */
 .close:hover:before,
-.close:hover:after {
   transform: rotate(90deg);
   transition : all 0.25s ease-out;
 }
