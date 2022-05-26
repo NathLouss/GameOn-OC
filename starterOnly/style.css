@@ -196,7 +196,7 @@ main {
 }
 
 .content {
-  margin: 20% auto;
+  margin: 1% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -214,12 +214,12 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 1% auto;
   height:929px;
   max-width: 500px;
   padding-top: 400px;
   background: #232323;
   border-radius: 10px;
-  margin-top: 50px;
 }
 
 .thanks {

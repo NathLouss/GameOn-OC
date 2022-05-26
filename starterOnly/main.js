@@ -18,7 +18,7 @@ const closeBtn = document.getElementById("close-registration");
 
 // open or close the modal
 toggleModal = () => {
-  modalContainer.classList.toggle("active");
+  modalContainer.classList.toggle("active")
 }
 
 // check if Firstname is valid & display or not error
@@ -156,7 +156,6 @@ disabledSubmit = () => {
 // check if all inputs are valid & submit the form
 validateForm = (e) => {
   e.preventDefault();
-
   if (checkInputs()) {
     modalContainer.classList.remove("active");
     modalValidation.classList.add("active")
