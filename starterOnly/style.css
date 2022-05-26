@@ -68,6 +68,20 @@ img {
   display: none;
 }
 
+@media screen and (max-width: 1094px) {
+  .topnav a {
+    padding: 12px 3px;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .topnav a {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {
@@ -563,6 +577,19 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+@media screen and (min-width: 901px) and (max-width: 1094px) {
+  .hero-headline {
+    font-size: 4.5rem!important;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 900px) {
+  .hero-headline {
+    font-size: 4rem!important;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
