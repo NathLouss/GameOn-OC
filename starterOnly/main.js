@@ -132,15 +132,7 @@ hideError = (element) => {
 
 // check if all inputs are valid
 checkInputs = () => {
-  let validFirstname = isFirstnameValid();
-  let validLastname = isLastnameValid();
-  let validEmail = isEmailValid();
-  let validBirthdate = isBirthdateValid();
-  let validQuantity = isQuantityValid();
-  let validRadio = isRadioChecked();
-  let validCheckbox = isCheckboxChecked();
-  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
-  
+  let isInputsValid = isFirstnameValid() && isLastnameValid() && isEmailValid() && isBirthdateValid() && isQuantityValid() && isRadioChecked() && isCheckboxChecked();
   if (isInputsValid) {
     return true
   }
@@ -150,7 +142,7 @@ checkInputs = () => {
 
 // check if inputs are valid & display or not submit button
 disabledSubmit = () => {
-  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true);
+  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true)
 }
 
 // check if all inputs are valid & submit the form
@@ -163,7 +155,7 @@ validateForm = (e) => {
 }
 
 //  closing the modal after registration validation
-closeForm = (e) => {
+closeForm = () => {
   modalValidation.classList.remove("active");
   form.reset()
 }
