@@ -18,7 +18,7 @@ const closeBtn = document.getElementById("close-registration");
 
 // open or close the modal
 toggleModal = () => {
-  modalContainer.classList.toggle("active");
+  modalContainer.classList.toggle("active")
 }
 
 // check if Firstname is valid & display or not error
@@ -132,15 +132,7 @@ hideError = (element) => {
 
 // check if all inputs are valid
 checkInputs = () => {
-  let validFirstname = isFirstnameValid();
-  let validLastname = isLastnameValid();
-  let validEmail = isEmailValid();
-  let validBirthdate = isBirthdateValid();
-  let validQuantity = isQuantityValid();
-  let validRadio = isRadioChecked();
-  let validCheckbox = isCheckboxChecked();
-  let isInputsValid = validFirstname && validLastname && validEmail && validBirthdate && validQuantity && validRadio && validCheckbox;
-  
+  let isInputsValid = isFirstnameValid() && isLastnameValid() && isEmailValid() && isBirthdateValid() && isQuantityValid() && isRadioChecked() && isCheckboxChecked();
   if (isInputsValid) {
     return true
   }
@@ -150,28 +142,22 @@ checkInputs = () => {
 
 // check if inputs are valid & display or not submit button
 disabledSubmit = () => {
-  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true);
+  checkInputs ? submit.removeAttribute("disabled") : submit.setAttribute("disabled", true)
 }
 
 // check if all inputs are valid & submit the form
 validateForm = (e) => {
   e.preventDefault();
-
   if (checkInputs()) {
     modalContainer.classList.remove("active");
-    form.reset();
-    modalValidation.classList.add("active");
-
-    // modalBody.innerHTML = "Merci pour votre inscription" + '<button id="close-registration" class="btn-signup">Fermer</button>'; 
-    // modalBody.classList.add("content-validation");
-
+    modalValidation.classList.add("active")
   }
 }
 
 //  closing the modal after registration validation
-closeForm = (e) => {
+closeForm = () => {
   modalValidation.classList.remove("active");
-  form.reset();
+  form.reset()
 }
 
 // EVENT LISTENERS
