@@ -420,6 +420,7 @@ input[data-error]::after {
 }
 /* animation rotating on hover */
 .close:hover:before,
+.close:hover:after {
   transform: rotate(90deg);
   transition : all 0.25s ease-out;
 }
